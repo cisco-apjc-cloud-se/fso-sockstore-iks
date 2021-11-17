@@ -3,7 +3,7 @@ terraform {
     hostname = "app.terraform.io"
     organization = "mel-ciscolabs-com"
     workspaces {
-      name = "fso-sockstore-iks"
+      name = "fso-teastore-iks"
     }
   }
   required_providers {

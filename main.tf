@@ -29,9 +29,8 @@ data "intersight_organization_organization" "org" {
 
 ## IKS Module ##
 module "terraform-intersight-iks" {
-  source = "terraform-cisco-modules/iks/intersight/"
+  source  = "terraform-cisco-modules/iks/intersight"
   version = "2.2.0"
-
 
   ip_pool = {
     use_existing = false
@@ -62,10 +61,9 @@ module "terraform-intersight-iks" {
   }
 
   # Version policy
-  version_policy = {
-    use_existing = true
-    name = "k8s-1.19"
-    # version = "1.19.5"
+  versionPolicy = {
+    useExisting = true
+    policyName = "k8s-1.19"
   }
 
   tr_policy = {

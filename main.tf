@@ -153,7 +153,7 @@ module "terraform-intersight-iks" {
     action = "Deploy" # Unassign, Deploy
 
     ## Note: You cannot assign the cluster action as "Deploy" and "wait_for_completion" as TRUE at the same time.
-    // wait_for_completion = true
+    wait_for_completion = false
     worker_nodes = var.worker_nodes
     load_balancers = var.load_balancer_ips
     worker_max = var.worker_nodes_max

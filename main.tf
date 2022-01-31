@@ -29,7 +29,9 @@ data "intersight_organization_organization" "org" {
 
 ## IKS Module ##
 module "terraform-intersight-iks" {
-  source = "terraform-cisco-modules/iks/intersight//"
+  source = "terraform-cisco-modules/iks/intersight/"
+  version = "2.2.0"
+
 
   ip_pool = {
     use_existing = false
@@ -124,29 +126,51 @@ module "terraform-intersight-iks" {
     # vcPassword      = optional(string)
   }
 
-  addons_list = [
+  addons       = [
     {
-     addon_policy_name = "iks-smm"
-     addon             = "smm"
-     description       = "Service Mesh Manager"
-     upgrade_strategy  = "UpgradeOnly"
-     install_strategy  = "Always"
-    }
+    createNew = true
+    addonPolicyName   = "iks-smm"
+    addonName         = "smm"
+    description       = "SMM Policy"
+    upgradeStrategy   = "AlwaysReinstall"
+    installStrategy   = "InstallOnly"
+    releaseVersion    = "smm:1.8.1-cisco2-helm3"
+    overrides         = yamlencode({"demoApplication":{"enabled":true}})
+    },
     # {
-    # addon_policy_name = "dashboard"
-    # addon             = "kubernetes-dashboard"
-    # description       = "K8s Dashboard Policy"
-    # upgrade_strategy  = "AlwaysReinstall"
-    # install_strategy  = "InstallOnly"
-    # },
-    # {
-    #   addon_policy_name = "monitor"
-    #   addon             = "ccp-monitor"
-    #   description       = "Grafana Policy"
-    #   upgrade_strategy  = "AlwaysReinstall"
-    #   install_strategy  = "InstallOnly"
+    # createNew = true
+    # addonName            = "ccp-monitor"
+    # description       = "monitor Policy"
+    # # upgradeStrategy  = "AlwaysReinstall"
+    # # installStrategy  = "InstallOnly"
+    # releaseVersion = "0.2.61-helm3"
+    # # overrides = yamlencode({"demoApplication":{"enabled":true}})
     # }
   ]
+
+  // addons_list = [
+  //   {
+  //    addon_policy_name = "iks-smm"
+  //    addon             = "smm"
+  //    description       = "Service Mesh Manager"
+  //    upgrade_strategy  = "UpgradeOnly"
+  //    install_strategy  = "Always"
+  //   }
+  //   # {
+  //   # addon_policy_name = "dashboard"
+  //   # addon             = "kubernetes-dashboard"
+  //   # description       = "K8s Dashboard Policy"
+  //   # upgrade_strategy  = "AlwaysReinstall"
+  //   # install_strategy  = "InstallOnly"
+  //   # },
+  //   # {
+  //   #   addon_policy_name = "monitor"
+  //   #   addon             = "ccp-monitor"
+  //   #   description       = "Grafana Policy"
+  //   #   upgrade_strategy  = "AlwaysReinstall"
+  //   #   install_strategy  = "InstallOnly"
+  //   # }
+  // ]
 
   instance_type = {
     use_existing = true

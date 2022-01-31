@@ -126,14 +126,14 @@ module "terraform-intersight-iks" {
 
   addons       = [
     {
-    createNew = true
+    createNew = false
     addonPolicyName   = "iks-smm"
     addonName         = "smm"
-    description       = "SMM Policy"
-    upgradeStrategy   = "AlwaysReinstall"
-    installStrategy   = "InstallOnly"
-    releaseVersion    = "smm:1.8.1-cisco2-helm3"
-    overrides         = yamlencode({"demoApplication":{"enabled":true}})
+    // description       = "SMM Policy"
+    // upgradeStrategy   = "AlwaysReinstall"
+    // installStrategy   = "InstallOnly"
+    // releaseVersion    = "smm:1.8.1-cisco2-helm3"
+    // overrides         = yamlencode({"demoApplication":{"enabled":true}})
     },
     # {
     # createNew = true

@@ -125,16 +125,16 @@ module "terraform-intersight-iks" {
   }
 
   addons = [
-    {
-    createNew = true
-    addonPolicyName   = "iks-smm"
-    addonName         = "smm"
-    description       = "Terraform-built SMM Policy"
-    upgradeStrategy   = "AlwaysReinstall"
-    installStrategy   = "InstallOnly"
-    releaseVersion    = "smm:1.8.1-cisco2-helm3"
-    overrides         = yamlencode({"demoApplication":{"enabled":true}})
-    }
+    // {
+    // createNew = true
+    // addonPolicyName   = "iks-smm"
+    // addonName         = "smm"
+    // description       = "Terraform-built SMM Policy"
+    // upgradeStrategy   = "AlwaysReinstall"
+    // installStrategy   = "InstallOnly"
+    // releaseVersion    = "smm:1.8.1-cisco2-helm3"
+    // overrides         = yamlencode({"demoApplication":{"enabled":true}})
+    // }
   ]
 
   instance_type = {

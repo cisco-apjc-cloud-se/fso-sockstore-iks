@@ -124,26 +124,17 @@ module "terraform-intersight-iks" {
     # vcPassword      = optional(string)
   }
 
-  addons       = [
+  addons = [
     {
     createNew = true
     addonPolicyName   = "iks-smm"
     addonName         = "smm"
     description       = "Terraform-built SMM Policy"
-    // upgradeStrategy   = "AlwaysReinstall"
-    // installStrategy   = "InstallOnly"
+    upgradeStrategy   = "AlwaysReinstall"
+    installStrategy   = "InstallOnly"
     releaseVersion    = "smm:1.8.1-cisco2-helm3"
-    // overrides         = yamlencode({"demoApplication":{"enabled":true}})
-    },
-    # {
-    # createNew = true
-    # addonName            = "ccp-monitor"
-    # description       = "monitor Policy"
-    # # upgradeStrategy  = "AlwaysReinstall"
-    # # installStrategy  = "InstallOnly"
-    # releaseVersion = "0.2.61-helm3"
-    # # overrides = yamlencode({"demoApplication":{"enabled":true}})
-    # }
+    overrides         = yamlencode({"demoApplication":{"enabled":true}})
+    }
   ]
 
   instance_type = {

@@ -130,7 +130,7 @@ module "terraform-intersight-iks" {
     addonPolicyName   = "rw-smm"
     addonName         = "smm"
     description       = "Terraform-built SMM Policy"
-    upgradeStrategy   = "AlwaysReinstall"
+    upgradeStrategy   = "UpgradeOnly"
     installStrategy   = "InstallOnly"
     releaseVersion    = "1.8.1-cisco2-helm3"
     overrides         = yamlencode({"demoApplication":{"enabled":true}})
